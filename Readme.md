@@ -6,6 +6,7 @@
 ```bash
 git clone https://github.com/0xDevvvvv/makerble
 cd makerble
+go mod tidy
 ```
 
 2. **Set up `.env`**
