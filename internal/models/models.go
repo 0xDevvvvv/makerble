@@ -8,9 +8,14 @@ type LoginRequest struct {
 }
 
 type Patient struct {
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	Gender string `json:"gender"`
+	ID        int       `json:"id"`
+	Name      string    `json:"name"`
+	Age       int       `json:"age,omitempty"`
+	Gender    string    `json:"gender,omitempty"`
+	Address   string    `json:"address,omitempty"`
+	Phone     string    `json:"phone,omitempty"`
+	Illness   string    `json:"illness,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
 }
 type User struct {
 	ID        int

@@ -11,7 +11,7 @@ type UserRepository interface {
 	GetById(id int) (*models.User, error)
 	GetByUsername(username string) (*models.User, error)
 	GetPassword(id int) (string, error)
-	Create(user *models.UserCreate) error
+	Create(user *models.UserCreate) (*models.UserCreate, error)
 	// Update(user *models.User) error
 	// Delete(user *models.User) error
 }
@@ -86,7 +86,7 @@ func (r *userRepo) GetPassword(id int) (string, error) {
 	return hash, nil
 }
 
-func (r *userRepo) Create(user *models.UserCreate) error {
+func (r *userRepo) Create(user *models.UserCreate) (*models.UserCreate, error) {
 
 	query := `
 		INSERT INTO users (username, role)
@@ -98,7 +98,7 @@ func (r *userRepo) Create(user *models.UserCreate) error {
 		Scan(&user.ID, &user.CreatedAt)
 
 	if err != nil {
-		return fmt.Errorf("error creating user (CreateUser): %w", err)
+		return nil, fmt.Errorf("error creating user (CreateUser): %w", err)
 	}
 
 	query = `
@@ -110,11 +110,11 @@ func (r *userRepo) Create(user *models.UserCreate) error {
 		Scan(&user.ID, &user.Password)
 
 	if err != nil {
-		return fmt.Errorf("error creating user (CreateUser): %w", err)
+		return nil, fmt.Errorf("error creating user (CreateUser): %w", err)
 	}
 
 	fmt.Printf("User Created : %v %v %v %v %v\n", user.Username, user.Role, user.ID, user.CreatedAt, user.Password)
-	return nil
+	return user, nil
 }
 
 // func (r *userRepo) Update(user *models.User) error {

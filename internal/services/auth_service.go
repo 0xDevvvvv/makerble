@@ -45,12 +45,12 @@ func ValidateUser(db *sql.DB, username, password string) (string, error) {
 	return jwt, nil
 }
 
-func CreateUser(db *sql.DB, user *models.UserCreate) error {
+func CreateUser(db *sql.DB, user *models.UserCreate) (*models.UserCreate, error) {
 	userRepo := repositories.NewUserRepository(db)
 	hashedPassword, err := utils.HashPassword(user.Password)
 	user.Password = hashedPassword
 	if err != nil {
-		return fmt.Errorf("failed to hash password: %w", err)
+		return nil, fmt.Errorf("failed to hash password: %w", err)
 	}
 	return userRepo.Create(user)
 }

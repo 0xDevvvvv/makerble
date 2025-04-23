@@ -45,11 +45,11 @@ func (h *AuthHandler) Signup(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"Error": "Please provide a username and password and a role"})
 		return
 	}
-	err = services.CreateUser(h.DB, &req)
+	user, err := services.CreateUser(h.DB, &req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create user"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "User created successfully"})
+	c.JSON(http.StatusCreated, gin.H{"message": "User created successfully", "details": user})
 }
