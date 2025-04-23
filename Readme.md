@@ -1,6 +1,8 @@
 
 ## ⚙️ Setup Instructions
 
+🧾 Full API Collection: (#) *([Postman link](https://documenter.getpostman.com/view/44366009/2sB2ixjtmm))*
+
 1. **Clone the repo**
 
 ```bash
@@ -43,7 +45,7 @@ go run main.go
 | PUT    | `/patients/:id`     | Both         | Update diagnosis or notes          |
 | DELETE | `/patients/   `     | Receptionist | Delete patient                     |
 
-🧾 Full API Collection: (#) *([Postman link](https://documenter.getpostman.com/view/44366009/2sB2ixjtmm))*
+
 ---
 
 ## 🙌 Acknowledgements
