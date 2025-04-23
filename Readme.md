@@ -43,7 +43,7 @@ go run main.go
 | PUT    | `/patients/:id`     | Both         | Update diagnosis or notes          |
 | DELETE | `/patients/   `     | Receptionist | Delete patient                     |
 
-🧾 Full API Collection: [Postman Collection Link](#) *(link will be pasted soon )*
+🧾 Full API Collection: [Postman Collection Link](#) *([link will be pasted soon ](https://documenter.getpostman.com/view/44366009/2sB2ixjtmm))*
 ---
 
 ## 🙌 Acknowledgements
