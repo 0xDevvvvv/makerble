@@ -10,9 +10,10 @@ import (
 type UserRepository interface {
 	GetById(id int) (*models.User, error)
 	GetByUsername(username string) (*models.User, error)
+	GetPassword(id int) (string, error)
 	Create(user *models.UserCreate) error
-	Update(user *models.User) error
-	Delete(user *models.User) error
+	// Update(user *models.User) error
+	// Delete(user *models.User) error
 }
 
 type userRepo struct {
@@ -67,6 +68,24 @@ func (r *userRepo) GetById(id int) (*models.User, error) {
 	return &userDetails, nil
 
 }
+func (r *userRepo) GetPassword(id int) (string, error) {
+	var hash string
+	query := `
+		SELECT password_hash FROM user_passwords
+		WHERE id = $1;
+	`
+
+	row := r.db.QueryRow(query, id)
+	err := row.Scan(&hash)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return "", nil // not found
+		}
+		return "", fmt.Errorf("error Fetching Hash (By ID) : %w", err)
+	}
+	return hash, nil
+}
+
 func (r *userRepo) Create(user *models.UserCreate) error {
 
 	query := `
@@ -98,10 +117,10 @@ func (r *userRepo) Create(user *models.UserCreate) error {
 	return nil
 }
 
-func (r *userRepo) Update(user *models.User) error {
-	return nil
-}
+// func (r *userRepo) Update(user *models.User) error {
+// 	return nil
+// }
 
-func (r *userRepo) Delete(user *models.User) error {
-	return nil
-}
+// func (r *userRepo) Delete(user *models.User) error {
+// 	return nil
+// }

@@ -3,7 +3,7 @@ package models
 import "time"
 
 type LoginRequest struct {
-	Username string `json:"user"`
+	Username string `json:"username"`
 	Password string `json:"password"`
 }
 
@@ -21,8 +21,8 @@ type User struct {
 
 type UserCreate struct {
 	ID        int
-	Username  string
-	Password  string
-	Role      string
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+	Role      string `json:"role"`
 	CreatedAt time.Time
 }

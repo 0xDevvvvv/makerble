@@ -20,7 +20,7 @@ CREATE TABLE patients (
     address TEXT,
     phone VARCHAR(15),
     illness TEXT,
-    created_at TIMESTAMP DEFAULT NOW(),
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- +goose StatementEnd

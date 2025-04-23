@@ -33,7 +33,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		//this is to set the context with the user ID and role so that these process  maynot be repeated
-		c.Set("userID", claims.UserID)
+		c.Set("username", claims.UserName)
 		c.Set("role", claims.Role)
 
 		c.Next()

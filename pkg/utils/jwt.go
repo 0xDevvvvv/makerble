@@ -3,22 +3,26 @@ package utils
 import (
 	"time"
 
-	"github.com/0xDevvvvv/makerble/config"
 	"github.com/golang-jwt/jwt/v5"
 )
 
-var jwtSecret = []byte(config.AppConfig.JWTSecret) //load the jwt secret from .env file
+var jwtSecret []byte
+
+// initialize the jwt secret
+func InitJWT(secret string) {
+	jwtSecret = []byte(secret)
+}
 
 type Claims struct {
-	UserID string `json:"user_id"`
-	Role   string `json:"role"`
+	UserName string `json:"user_id"`
+	Role     string `json:"role"`
 	jwt.RegisteredClaims
 }
 
 func GenerateToken(userID, role string) (string, error) {
 	claims := &Claims{
-		UserID: userID,
-		Role:   role,
+		UserName: userID,
+		Role:     role,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 24)),
 		},

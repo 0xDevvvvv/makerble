@@ -20,18 +20,18 @@ type Config struct {
 var AppConfig *Config
 
 func LoadConfig() {
-	err := godotenv.Load()
+	err := godotenv.Load("../.env")
 	if err != nil {
 		log.Println("No .env file found, falling back to system env")
 	}
 
 	AppConfig = &Config{
 		Port:       getEnv("PORT", "8080"),
-		DBHost:     getEnv("DB_HOST", "localhost"),
-		DBPort:     getEnv("DB_PORT", "5432"),
-		DBUser:     getEnv("DB_USER", ""),
-		DBPassword: getEnv("DB_PASSWORD", ""),
-		DBName:     getEnv("DB_NAME", ""),
+		DBHost:     getEnv("DBHOST", "localhost"),
+		DBPort:     getEnv("DBPORT", "5432"),
+		DBUser:     getEnv("DBUSER", ""),
+		DBPassword: getEnv("DBPASSWORD", ""),
+		DBName:     getEnv("DBNAME", ""),
 		JWTSecret:  getEnv("JWT_SECRET", "secret"),
 	}
 }
