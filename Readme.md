@@ -48,8 +48,5 @@ go run main.go
 
 ---
 
-## 🙌 Acknowledgements
-
-This project is part of the internship process at [Makerble](https://makerble.com). Built with ❤️ by [Dev Bhagavan](https://dev-bhagavan.vercel.app).
 
 ---
